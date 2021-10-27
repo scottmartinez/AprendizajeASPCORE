@@ -1,0 +1,3 @@
+﻿@using EcommerceSistemaVsShopify
+@using EcommerceSistemaVsShopify.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

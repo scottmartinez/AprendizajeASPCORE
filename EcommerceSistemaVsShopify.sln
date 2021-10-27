@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcommerceSistemaVsShopify", "EcommerceSistemaVsShopify\EcommerceSistemaVsShopify.csproj", "{587518D3-CCA4-44D7-98ED-424B6185C9BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevExtreme NuGet.config", "DevExtreme NuGet.config", "{79F13F53-D997-4631-BB75-B65592683C3C}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet.config = NuGet.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{587518D3-CCA4-44D7-98ED-424B6185C9BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{587518D3-CCA4-44D7-98ED-424B6185C9BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{587518D3-CCA4-44D7-98ED-424B6185C9BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{587518D3-CCA4-44D7-98ED-424B6185C9BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C4D3D19-A82A-4EDC-9818-ACA927562EB5}
+	EndGlobalSection
+EndGlobal

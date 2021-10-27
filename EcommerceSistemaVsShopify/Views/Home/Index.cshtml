@@ -1,0 +1,48 @@
+﻿@model  List<EcommerceSistemaVsShopify.Models.Usuarios_asp_core>
+@{
+    ViewData["Title"] = "Pagina Principal";
+}
+
+@*<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn abt <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Ce</a>.</p>
+</div>*@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+
+    <form action="/Home/Index" method="post">
+        <input type="text" name="id_usuario" />
+        <input type="text" name="UserName" />
+        <input type="text" name="pass" />
+        <input type="submit" name="btn_subir_datos" value="Subir Datos" />
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <td>IDUSUARIO</td>
+                <td>UserName</td>
+                <td>Pass</td>
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model != null)
+            {
+                @foreach(var u in Model)
+                {
+                    <tr>
+                        <td>@u.id_usuario</td>
+                        <td>@u.UserName</td>
+                        <td>@u.pass</td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+
+</body>
+</html>
