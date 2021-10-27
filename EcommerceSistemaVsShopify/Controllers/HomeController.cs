@@ -20,7 +20,7 @@ namespace EcommerceSistemaVsShopify.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index( )
+        public IActionResult Index()
         {
             return View();
         }
@@ -29,7 +29,7 @@ namespace EcommerceSistemaVsShopify.Controllers
         public IActionResult Index(Usuarios_asp_core usuario)
         {
             /*ADO commando*/
-
+            //
             SqlConnection conexion=new SqlConnection(InformacionConection);
             conexion.Open();
             String query=$"INSERT INTO administradorcurso.Usuarios_asp_core(id_usuario,UserName,pass)VALUES('{usuario.id_usuario}','{usuario.UserName}','{usuario.pass}')";
