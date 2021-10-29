@@ -14,7 +14,6 @@ namespace EcommerceSistemaVsShopify.Controllers
     {
         private string InformacionConection="Data Source=184.168.194.58;Initial Catalog=CursoOnline; User Id=administradorcurso; Password=Administrador@; Integrated Security=False";
         private readonly ILogger<HomeController> _logger;
-
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -51,10 +50,6 @@ namespace EcommerceSistemaVsShopify.Controllers
             }
             conexion.Close();
             return View(Usuarios);
-        }
-        public IActionResult Privacy( )
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0,Location = ResponseCacheLocation.None,NoStore = true)]

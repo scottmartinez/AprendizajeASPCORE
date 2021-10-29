@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Existencias BC";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@using X.PagedList.Web.Common;
+@model ExistenciasEcommerceInfoPaginacion
+
+<link rel="stylesheet" href="~/css/devextreme/bootstrap.min.css" />
+<script src="~/js/devextreme/bootstrap.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<h1>Existencias Ecommerce</h1>
+
+<div class="container">
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>PLM</th>
+                <th>CODIGO</th>
+                <th>NOMBRE PRODUCTO</th>
+                <th>EXIST</th>
+                <th>COLECCIÓN</th>
+                <th>TEMP</th>
+                <th>UN</th>
+                <th>PRECIO</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach(var ex in Model.Existencias)
+            {
+            <tr>
+                <td>@ex.PLM</td>
+                <td>@ex.CodigoProducto</td>
+                <td>@ex.NombreProducto</td>
+                <td>@ex.Existencia</td>
+                <td>@ex.Coleccion</td>
+                <td>@ex.Temporada</td>
+                <td>@ex.UnidadNegocio</td>
+                <td>@ex.Precio_Neto</td>
+            </tr>
+            }
+            <tr>
+
+               <td colspan="3">
+                   @Html.PagedListPager((IPagedList)Model.Existencias,
+                    pagina=>Url.Action("EcommerceExistencia",new { pagina=pagina}),
+                    PagedListRenderOptions.OnlyShowFivePagesAtATime)
+
+               </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
