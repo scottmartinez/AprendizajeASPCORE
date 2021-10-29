@@ -8,9 +8,10 @@ namespace EcommerceSistemaVsShopify.Models
     public class ExistenciasEcommerceInfoPaginacion
     {
         public int? TamanioPagina;
-        //public string OrdenarPor {get; set;}
-        //public string Buscar { get; set; }
-        public StaticPagedList<ExistenciasEcommerceModelo> Existencias { get; set; }
+        public int OrdenarPor { get; set; }
+        public string Buscar { get; set; }
+        public bool isAscendente { get; set; }
+        public StaticPagedList<ExistenciasEcommerceModelo> Existencias { get; set;}
 
     }
 }

@@ -24,4 +24,7 @@
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Views\ViewExistenciasEcommerce.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ConsultasSqlServer\" />
+  </ItemGroup>
 </Project>

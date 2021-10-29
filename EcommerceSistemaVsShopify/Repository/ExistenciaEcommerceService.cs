@@ -22,6 +22,7 @@ namespace EcommerceSistemaVsShopify.Repository
             }
         }
 
+
         public int GetCantidadExistencias( )
         {
             using(SqlConnection Con = new SqlConnection(CadenaDeConexionManager.Valor))
@@ -31,5 +32,32 @@ namespace EcommerceSistemaVsShopify.Repository
                 return datos;
             }
         }
+
+        public int GetCantidadExistencias(string buscar)
+        {
+            using(SqlConnection CN = new SqlConnection(CadenaDeConexionManager.Valor))
+            {
+                var Parametros= new DynamicParameters();
+                Parametros.Add("@Buscar",buscar);
+                var Datos= CN.Query<int>("ObtieneCantidadExistencias_Buscar",Parametros,commandType:System.Data.CommandType.StoredProcedure).FirstOrDefault();
+                return Datos;
+
+            }
+        }
+        public List<ExistenciasEcommerceModelo> ExistenciasEcommercePaginacion(string buscar,string ordenarpor,int? pagina,int tamanio_pagina)
+        {
+            using(SqlConnection C= new SqlConnection(CadenaDeConexionManager.Valor))
+            {
+                var parametros = new DynamicParameters();
+                parametros.Add("@ordenarpor",ordenarpor);
+                parametros.Add("@buscar",buscar);
+                parametros.Add("@numeropagina",pagina);
+                parametros.Add("@tamaniopagina",tamanio_pagina);
+                var Datos= C.Query<Models.ExistenciasEcommerceModelo>("ExistenciasEcommercePaginado_Buscar",parametros,commandType:System.Data.CommandType.StoredProcedure).ToList();
+                return Datos;
+
+            }
+        }
+
     }
 }
