@@ -18,24 +18,35 @@ namespace EcommerceSistemaVsShopify.Controllers
         {
             _IExistenciasBusqueda = IExistenciasBusqueda;
         }
-        public IActionResult Grilla(string buscar,int ordenar_por,bool isAscendente = true, int? pagina=1)
+        public IActionResult Grilla(string buscar,int ordenarpor,bool isAscendente = true,int? page=1)
         {
+            //int? page=1;
             string valorbusqueda= string.Empty;
             if(!string.IsNullOrEmpty(buscar))
             {
                 valorbusqueda = Regex.Replace(buscar,@"[^a-zA-Z0-9\s]",String.Empty);
             }
-            if(pagina<0)
+            if(page<0)
             {
-                pagina = 1;
+                page = 1;
             }
             ExistenciasEcommerceInfoPaginacion infoPaginacion= new ExistenciasEcommerceInfoPaginacion();
-            var indicepagina=(pagina??1)-1;
-            var  tamaniopagina=50;
+            var indicepagina=(page??1)-1;
+            var  tamaniopagina=30;
             string columnaorden;
             #region Ordenandocolumna
-            switch(ordenar_por)
+            switch(ordenarpor)
             {
+                case 0:
+                    if(isAscendente)
+                    {
+                        columnaorden = "PLM";
+                    }
+                    else
+                    {
+                        columnaorden = "PLM Desc";
+                    }
+                    break;
                 case 1:
                     if(isAscendente)
                     {
@@ -49,14 +60,24 @@ namespace EcommerceSistemaVsShopify.Controllers
                 case 2:
                     if(isAscendente)
                     {
-                        columnaorden = "PLM";
+                        columnaorden = "NombreProducto";
                     }
                     else
                     {
-                        columnaorden = "PLM Desc";
+                        columnaorden = "NombreProducto Desc";
                     }
                     break;
                 case 3:
+                    if(isAscendente)
+                    {
+                        columnaorden = "Existencia";
+                    }
+                    else
+                    {
+                        columnaorden = "Existencia Desc";
+                    }
+                    break;
+                case 4:
                     if(isAscendente)
                     {
                         columnaorden = "COLECCION";
@@ -66,19 +87,49 @@ namespace EcommerceSistemaVsShopify.Controllers
                         columnaorden = "COLECCION Desc";
                     }
                     break;
+                case 5:
+                    if(isAscendente)
+                    {
+                        columnaorden = "Temporada";
+                    }
+                    else
+                    {
+                        columnaorden = "Temporada Desc";
+                    }
+                    break;
+                case 6:
+                    if(isAscendente)
+                    {
+                        columnaorden = "UnidadNegocio";
+                    }
+                    else
+                    {
+                        columnaorden = "UnidadNegocio Desc";
+                    }
+                    break;
+                case 7:
+                    if(isAscendente)
+                    {
+                        columnaorden = "Precio_Neto";
+                    }
+                    else
+                    {
+                        columnaorden = "Precio_Neto Desc";
+                    }
+                    break;
                 default:
-                    columnaorden = "CodigoProducto";
+                    columnaorden = "NombrePorducto";
                     break;
             }
             #endregion
             int totalLineas= _IExistenciasBusqueda.GetCantidadExistencias(valorbusqueda);
-            var Existencias=_IExistenciasBusqueda.ExistenciasEcommercePaginacion(valorbusqueda,columnaorden,pagina,tamaniopagina).ToList();
+            var Existencias=_IExistenciasBusqueda.ExistenciasEcommercePaginacion(valorbusqueda,columnaorden,page,tamaniopagina).ToList();
             var ExistenciasPaginadas= new StaticPagedList<ExistenciasEcommerceModelo>(Existencias,indicepagina+1,tamaniopagina,totalLineas);
 
             infoPaginacion.Existencias = ExistenciasPaginadas;
             infoPaginacion.TamanioPagina = tamaniopagina;
             infoPaginacion.Buscar = valorbusqueda;
-            infoPaginacion.OrdenarPor = ordenar_por;
+            infoPaginacion.OrdenarPor = ordenarpor;
             infoPaginacion.isAscendente = isAscendente;
             return View(infoPaginacion);
 

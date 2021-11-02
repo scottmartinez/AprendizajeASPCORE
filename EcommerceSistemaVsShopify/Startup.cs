@@ -62,7 +62,7 @@ namespace EcommerceSistemaVsShopify
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=ExistenciasEcommerce}/{action=EcommerceExistencia}/{id?}");
+                    pattern: "{controller=ExistenciasBusqueda}/{action=Grilla}/{id?}");
             });
         }
     }

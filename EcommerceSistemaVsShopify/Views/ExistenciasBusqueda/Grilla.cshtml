@@ -7,7 +7,7 @@
 @using X.PagedList.Web.Common;
 @using EcommerceSistemaVsShopify.Models
 @model ExistenciasEcommerceInfoPaginacion
-<link href="~/lib/bootstrap/dist/css/bootstrap-grid.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <style>
@@ -24,6 +24,9 @@
             .arrow.down {
                 background-image: url("~/wwwroot/assets/icons8-arrow-down.png");
             }
+        .dollars {
+            text-align:right;
+        }
     </style>
 <div>
     <h4>Existencias Bodega Central</h4>
@@ -34,22 +37,86 @@
             @Html.TextBoxFor(m=>m.Buscar,new {@class="form-control"})
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12">
-           <input id="btnSubmit" class="btn btn-success" type="submit" value="Buscar"/>
-            <input id="btn-limpiar" class="btn btn-success" type="submit"value="Limpiar"/>
+           <input id="btnSubmit" class="btn btn-primary" type="submit" value="Buscar"/>
+            <input id="btnClear" class="btn btn-primary" type="submit"value="Limpiar"/>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12">
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12" style="margin-top:25px">
-            <table class="table-bordered">
+            <table class="table table-bordered">
                 <thead>
-                    <tr ordenar="@Model.OrdenarPor">
-
+                    <tr  ordenarpor=@Model.OrdenarPor
+                        tamaniopagina="@Model.TamanioPagina"
+                        IsAscendente="@Model.isAscendente" 
+                        buscar="@Model.Buscar"
+                         >
+                      
                     </tr>
                 </thead>
+                <tbody>
+                    @foreach(var ex in Model.Existencias)
+                    {
+                    <tr>
+                        <td>
+                            @ex.PLM
+                        </td>
+                        <td>
+                            @ex.CodigoProducto
+                        </td>
+                        <td>
+                            @ex.NombreProducto
+                        </td>
+                        <td>
+                            @ex.Existencia
+                        </td>
+                        <td>
+                            @ex.Coleccion
+                        </td>
+                        <td>
+                            @ex.Temporada
+                        </td>
+                        <td>
+                            @ex.UnidadNegocio
+
+                        </td>
+                        <td class="dollars">
+                            @ex.Precio_Neto
+                        </td>
+                    </tr>
+                    }
+                    <tr>
+                        <td colspan="3" class="pagination">
+                            @Html.PagedListPager((IPagedList)Model.Existencias,
+                           page=>Url.Action("Grilla",new {
+                           page=page,
+                           ordenarpor=Model.OrdenarPor,
+                           buscar=Model.Buscar
+
+                       }),PagedListRenderOptions.ClassicPlusFirstAndLast)
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
     }
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnClear').click(function () {
+            window.location.href = window.location.href.split('?')[0];
+        })
+        $('#Search').blur(function () {
+            var valor = $('#Search').val();
+            valor = valor.trim();
+            $('#Search').val(valor);
+        })
+    })
+    $(document).ready(function () {
+        $("td.dollars").each(function () {
+            $(this).html(parseFloat($(this).text()).toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+        })
+    })
+</script>
