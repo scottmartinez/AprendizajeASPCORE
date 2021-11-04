@@ -32,7 +32,7 @@ namespace EcommerceSistemaVsShopify.Controllers
             }
             ExistenciasEcommerceInfoPaginacion infoPaginacion= new ExistenciasEcommerceInfoPaginacion();
             var indicepagina=(page??1)-1;
-            var  tamaniopagina=30;
+            var  tamaniopagina=50;
             string columnaorden;
             #region Ordenandocolumna
             switch(ordenarpor)
