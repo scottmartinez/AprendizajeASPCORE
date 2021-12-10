@@ -136,6 +136,7 @@ namespace EcommerceSistemaVsShopify.Controllers
         }
         public IActionResult Index( )
         {
+            ViewBag.Mensaje = "AQUI TOYyyy";
             return View();
         }
     }

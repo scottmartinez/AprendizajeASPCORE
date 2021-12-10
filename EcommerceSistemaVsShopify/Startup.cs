@@ -12,7 +12,7 @@ using Microsoft.Extensions.Hosting;
 using EcommerceSistemaVsShopify.Models;
 using EcommerceSistemaVsShopify.Repository;
 using Newtonsoft.Json.Serialization;
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceSistemaVsShopify
 {
@@ -29,10 +29,19 @@ namespace EcommerceSistemaVsShopify
         public void ConfigureServices(IServiceCollection services)
         {
             var conexion=Configuration.GetConnectionString("BaseDatosVICOSA");
+            string urltienda=Configuration.GetValue<string>("UrlTienda");
+            string tokenacceso=Configuration.GetValue<string>("TokenAcceso");
+            string ClaveApi=Configuration.GetValue<string>("ClaveApi");
+            string Contrasenia=Configuration.GetValue<string>("Contrasenia");
             CadenaDeConexionManager.Valor = conexion;
+            CadenaDeConexionManager.TokenDeAcceso = tokenacceso;
+            CadenaDeConexionManager.UrlTienda = urltienda;
+            CadenaDeConexionManager.ClaveApi = ClaveApi;
+            CadenaDeConexionManager.Contrasenia = Contrasenia;
             services.AddControllersWithViews();
             // Add the whole configuration object here.
-            services.AddSingleton<IConfiguration>(Configuration);
+            //services.AddSingleton<IConfiguration>(Configuration);
+          
             services.AddTransient<IExistenciasEcommerce,ExistenciaEcommerceService>();
 
 
@@ -62,8 +71,10 @@ namespace EcommerceSistemaVsShopify
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=ExistenciasBusqueda}/{action=Grilla}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+
             });
+
         }
     }
 }

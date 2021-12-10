@@ -1,7 +1,4 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
+﻿
 @using X.PagedList.Mvc.Core;
 @using X.PagedList;
 @using X.PagedList.Web.Common;
@@ -47,12 +44,13 @@
         <div class="col-lg-12" style="margin-top:25px">
             <table class="table table-bordered">
                 <thead>
-                    <tr  ordenarpor=@Model.OrdenarPor
+                    <tr  
+                        ordenarpor=@Model.OrdenarPor
                         tamaniopagina="@Model.TamanioPagina"
                         IsAscendente="@Model.isAscendente" 
                         buscar="@Model.Buscar"
                          >
-                      
+
                     </tr>
                 </thead>
                 <tbody>
